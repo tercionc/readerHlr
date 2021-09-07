@@ -20,7 +20,7 @@ public class HlrHuaweiVO {
     private Integer hlr_index;
     private String vlr_address;
     private String cat;
-    private String std_charge_blobal;
+    private String std_charge_global;
     private List<String> optgprs;
     private Map<String, String> others_service;
 }

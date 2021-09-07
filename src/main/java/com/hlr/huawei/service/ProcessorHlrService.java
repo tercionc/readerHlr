@@ -1,5 +1,7 @@
 package com.hlr.huawei.service;
 
+import com.hlr.huawei.business.BusinessRules;
+import com.hlr.huawei.constants.Constants;
 import com.hlr.huawei.dto.HlrHuaweiDTO;
 import com.hlr.huawei.dto.HlrHuaweiDetailsDTO;
 import com.hlr.huawei.vo.HlrHuaweiVO;
@@ -10,8 +12,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor(onConstructor = @__({@Lazy}))
@@ -22,46 +24,32 @@ public class ProcessorHlrService {
     @Autowired
     private WriterHlrService writerHlrService;
 
-    public List<HlrHuaweiVO> process(List<HlrHuaweiVO> vos) {
+    @Autowired
+    private BusinessRules businessRules;
+
+    public void process(List<HlrHuaweiVO> vos) {
 
         List<HlrHuaweiDTO> hlrHuaweiDTOs = vos.stream()
                                               .map(this::mapperVoToDTO)
                                               .collect(Collectors.toList());
         List<HlrHuaweiDetailsDTO> hlrHuaweiDetailsDTOS = new ArrayList<>();
 
-        hlrHuaweiDTOs.forEach( obj -> {
-            HlrHuaweiDetailsDTO hlrHuaweiDetailsDTO = new HlrHuaweiDetailsDTO();
+        hlrHuaweiDTOs.forEach( dto -> hlrHuaweiDetailsDTOS.add(HlrHuaweiDetailsDTO.builder()
+                                                    .msisdn(dto.getMsisdn())
+                                                    .hlrId(dto.getHlr_index())
+                                                    .imsi(dto.getImsi())
+                                                    .vlr_address(Optional.ofNullable(dto.getVlr_address()).isPresent() ? dto.getVlr_address() : null)
+                                                    .cat(Optional.ofNullable(dto.getCat()).isPresent() ? dto.getCat() : Constants.DEFAULT_VALUE.toString())
+                                                    .schar(Optional.ofNullable(dto.getStd_charge_global()).isPresent() ? businessRules.schar(dto.getStd_charge_global()) :
+                                                                                                                         Constants.DEFAULT_VALUE)
+                                                    .apnList(Optional.ofNullable(dto.getOptgprs()).isPresent() ?  businessRules.apnList(dto.getOptgprs()) : null)
+                                                    .qosList(Optional.ofNullable(dto.getOptgprs()).isPresent() ?  businessRules.qosList(dto.getOptgprs()) : null)
+                                                    .countApn(Optional.ofNullable(dto.getOptgprs()).isPresent() ?  businessRules.countApn(dto.getOptgprs()) : 0 )
+                .build()));
 
-            hlrHuaweiDetailsDTO.setMsisdn(obj.getMsisdn());
-            hlrHuaweiDetailsDTO.setHlrId(obj.getHlr_index());
-            hlrHuaweiDetailsDTO.setImsi(obj.getImsi());
-            hlrHuaweiDetailsDTO.setVlr_address(obj.getVlr_address());
-            hlrHuaweiDetailsDTO.setCat(obj.getCat());
-            if ( !obj.getStd_charge_blobal().isEmpty() ) {
-                /*
-                  TO DO - Convert Hex to Decimal
-                 */
-            }
-
-
-            /*
-                public static final String TAG_FIX_MSISDN = "MSISDN";
-    public static final String TAG_FIX_IMSI = "IMSI";
-    public static final String TAG_FIX_HLR_INDEX = "HLR_INDEX";
-    public static final String TAG_FIX_VLR_ADDRESS = "VLR_ADDRESS";
-    public static final String TAG_FIX_CAT = "CAT";
-    public static final String TAG_FIX_STD_CHARGE_GLOBAL = "STD_CHARGE_GLOBAL";
-    public static final String TAG_FIX_OPTGPRS = "OPTGPRS";
-             */
-
-        });
+        writerHlrService.write(hlrHuaweiDetailsDTOS);
 
 
-
-
-
-
-        return Arrays.asList();
     }
 
 
@@ -73,7 +61,7 @@ public class ProcessorHlrService {
                             .imsi(vo.getImsi())
                             .msisdn(vo.getMsisdn())
                             .others_service(vo.getOthers_service())
-                            .std_charge_blobal(vo.getStd_charge_blobal())
+                            .std_charge_global(vo.getStd_charge_global())
                             .vlr_address(vo.getVlr_address())
                     .build();
 

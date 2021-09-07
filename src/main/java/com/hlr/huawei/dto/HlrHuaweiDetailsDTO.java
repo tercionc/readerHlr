@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 
 @Data
@@ -21,8 +23,8 @@ public class HlrHuaweiDetailsDTO {
     private String subType;
     private Integer hlrId;
     private String vlr_address;
-    private String apnList;
-    private String qosList;
+    private List<String> apnList;
+    private List<String> qosList;
     private Integer countApn;
     private String cat;
     private Integer oick;

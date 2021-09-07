@@ -15,9 +15,6 @@ import javax.persistence.*;
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "HLR_HUAWEI_DETAILS")
 public class HlrHuaweiDetails {
-
-    private static final long serialVersionUID = -8841143134523472332L;
-
     @Id
     @Column(name="MSISDN")
     private String msisdn;
@@ -28,7 +25,7 @@ public class HlrHuaweiDetails {
     @Column(name = "SUBTYPE")
     private String subtype;
 
-    @Column(name = "SUBTYPE")
+    @Column(name = "IMEI")
     private String imei;
 
     @Column(name = "HLR_ID")
