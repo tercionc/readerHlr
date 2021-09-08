@@ -36,20 +36,19 @@ public class ProcessorHlrService {
 
         hlrHuaweiDTOs.forEach( dto -> hlrHuaweiDetailsDTOS.add(HlrHuaweiDetailsDTO.builder()
                                                     .msisdn(dto.getMsisdn())
-                                                    .hlrId(dto.getHlr_index())
+                                                    .hlrId(dto.getHlrIndex())
                                                     .imsi(dto.getImsi())
-                                                    .vlr_address(Optional.ofNullable(dto.getVlr_address()).isPresent() ? dto.getVlr_address() : null)
+                                                    .vlr_address(Optional.ofNullable(dto.getVlrAddress()).isPresent() ? dto.getVlrAddress() : null)
                                                     .cat(Optional.ofNullable(dto.getCat()).isPresent() ? dto.getCat() : Constants.DEFAULT_VALUE.toString())
-                                                    .schar(Optional.ofNullable(dto.getStd_charge_global()).isPresent() ? businessRules.schar(dto.getStd_charge_global()) :
+                                                    .schar(Optional.ofNullable(dto.getStdChargeGlobal()).isPresent() ? businessRules.mapperSchar(dto.getStdChargeGlobal()) :
                                                                                                                          Constants.DEFAULT_VALUE)
-                                                    .apnList(Optional.ofNullable(dto.getOptgprs()).isPresent() ?  businessRules.apnList(dto.getOptgprs()) : null)
-                                                    .qosList(Optional.ofNullable(dto.getOptgprs()).isPresent() ?  businessRules.qosList(dto.getOptgprs()) : null)
-                                                    .countApn(Optional.ofNullable(dto.getOptgprs()).isPresent() ?  businessRules.countApn(dto.getOptgprs()) : 0 )
+                                                    .apnList(Optional.ofNullable(dto.getOptgprs()).isPresent() ?  businessRules.mapperApnList(dto.getOptgprs()) : null)
+                                                    .qosList(Optional.ofNullable(dto.getOptgprs()).isPresent() ?  businessRules.mapperQosList(dto.getOptgprs()) : null)
+                                                    .countApn(Optional.ofNullable(dto.getOptgprs()).isPresent() ?  businessRules.mapperCountApn(dto.getOptgprs()) : 0 )
+                                                    .subType(String.valueOf(businessRules.mapperSubType(dto.getOthersService())))
+                                                    .imei(businessRules.mapperImei(dto.getOthersService()))
                 .build()));
-
         writerHlrService.write(hlrHuaweiDetailsDTOS);
-
-
     }
 
 
@@ -57,12 +56,12 @@ public class ProcessorHlrService {
         return HlrHuaweiDTO.builder()
                             .optgprs(vo.getOptgprs())
                             .cat(vo.getCat())
-                            .hlr_index(vo.getHlr_index())
+                            .hlrIndex(vo.getHlrIndex())
                             .imsi(vo.getImsi())
                             .msisdn(vo.getMsisdn())
-                            .others_service(vo.getOthers_service())
-                            .std_charge_global(vo.getStd_charge_global())
-                            .vlr_address(vo.getVlr_address())
+                            .othersService(vo.getOthersServices())
+                            .stdChargeGlobal(vo.getStdChargeGlobal())
+                            .vlrAddress(vo.getVlrAddress())
                     .build();
 
 

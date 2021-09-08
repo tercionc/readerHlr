@@ -19,8 +19,6 @@ import java.util.stream.Collectors;
 @Service
 public class ReaderHlrService {
 
-    private int lengthBuffer=2;
-
     @Autowired
     private ProcessorHlrService processorHlrService;
 
@@ -34,6 +32,8 @@ public class ReaderHlrService {
 
         List<HlrHuaweiVO>  vos = new ArrayList<>();
         int element=0;
+
+        int lengthBuffer = Optional.ofNullable(fileConfig.getChunk()).orElse(1);
 
         try (FileInputStream inputStream = new FileInputStream(fileConfig.getPath() + "/" + fileConfig.getName()); Scanner sc = new Scanner(inputStream, "UTF-8")) {
             while (sc.hasNextLine()) {
@@ -59,16 +59,16 @@ public class ReaderHlrService {
                         vos.get(element).setImsi(value);
                         break;
                     case Constants.TAG_FIX_HLR_INDEX:
-                        vos.get(element).setHlr_index(Integer.parseInt(value));
+                        vos.get(element).setHlrIndex(Integer.parseInt(value));
                         break;
                     case Constants.TAG_FIX_VLR_ADDRESS:
-                        vos.get(element).setVlr_address(value);
+                        vos.get(element).setVlrAddress(value);
                         break;
                     case Constants.TAG_FIX_CAT:
                         vos.get(element).setCat(value);
                         break;
                     case Constants.TAG_FIX_STD_CHARGE_GLOBAL:
-                        vos.get(element).setStd_charge_global(value);
+                        vos.get(element).setStdChargeGlobal(value);
                         break;
                     case Constants.TAG_FIX_OPTGPRS:
                         if (Optional.ofNullable(vos.get(element).getOptgprs()).isPresent()) {
@@ -88,11 +88,11 @@ public class ReaderHlrService {
                         }
                         break;
                     default:
-                        if (Optional.ofNullable(vos.get(element).getOthers_service()).isPresent()) {
-                            vos.get(element).getOthers_service().put(key, value);
+                        if (Optional.ofNullable(vos.get(element).getOthersServices()).isPresent()) {
+                            vos.get(element).getOthersServices().put(key, value);
                         } else {
-                            vos.get(element).setOthers_service(new HashMap<>());
-                            vos.get(element).getOthers_service().put(key, value);
+                            vos.get(element).setOthersServices(new HashMap<>());
+                            vos.get(element).getOthersServices().put(key, value);
                         }
                         break;
                 }

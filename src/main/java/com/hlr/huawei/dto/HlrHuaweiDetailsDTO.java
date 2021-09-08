@@ -18,7 +18,6 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 public class HlrHuaweiDetailsDTO {
     private String msisdn;
     private String imsi;
-    private String subtype;
     private String imei;
     private String subType;
     private Integer hlrId;

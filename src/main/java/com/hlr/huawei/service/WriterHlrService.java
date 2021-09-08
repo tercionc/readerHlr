@@ -40,6 +40,9 @@ public class WriterHlrService {
                                 .cfnrc(Optional.ofNullable(dto.getCfnrc()).orElse(Constants.DEFAULT_VALUE))
                                 .countApn(Optional.ofNullable(dto.getCountApn()).orElse(Constants.DEFAULT_VALUE))
                                 .qosList(Optional.ofNullable(dto.getQosList()).isPresent() ? String.join("-", dto.getQosList()) : null)
+                                .countApn(Optional.ofNullable(dto.getCountApn()).isPresent() ? dto.getCountApn() : 0)
+                                .subtype(Optional.ofNullable(dto.getSubType()).isPresent() ? dto.getSubType() : "0")
+                                .imei(Optional.ofNullable(dto.getImei()).isPresent() ? dto.getImei() : "000000000000001")
                 .build();
     }
 

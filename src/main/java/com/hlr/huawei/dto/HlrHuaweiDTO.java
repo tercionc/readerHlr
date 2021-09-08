@@ -20,10 +20,10 @@ public class HlrHuaweiDTO {
 
     private String msisdn;
     private String imsi;
-    private Integer hlr_index;
-    private String vlr_address;
+    private Integer hlrIndex;
+    private String vlrAddress;
     private String cat;
-    private String std_charge_global;
+    private String stdChargeGlobal;
     private List<String> optgprs;
-    private Map<String, String> others_service;
+    private Map<String, String> othersService;
 }

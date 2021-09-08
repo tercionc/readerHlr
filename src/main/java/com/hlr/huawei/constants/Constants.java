@@ -14,7 +14,8 @@ public class Constants {
 
     public static final String TAG_VAR_ECATEGORY = "ECATEGORY";
     public static final String TAG_VAR_SUBTYPE = "SUBTYPE";
-    public static final String TAG_VAR_IMEI = "IMEI";
+    public static final String TAG_VAR_EPS_EPS_IMEISV = "EPS_EPS_IMEISV";
+    public static final String TAG_VAR_EPS_IMEI = "EPS_IMEI";
     public static final String TAG_VAR_EIN = "EIN";
     public static final String TAG_VAR_DEFOFAID = "DEFOFAID";
     public static final String TAG_VAR_CF = "CF";

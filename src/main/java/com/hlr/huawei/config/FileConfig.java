@@ -10,4 +10,5 @@ import org.springframework.context.annotation.Configuration;
 public class FileConfig {
     private String path;
     private String name;
+    private Integer chunk;
 }
