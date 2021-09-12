@@ -34,11 +34,12 @@ public class ProcessorHlrService {
                                               .collect(Collectors.toList());
         List<HlrHuaweiDetailsDTO> hlrHuaweiDetailsDTOS = new ArrayList<>();
 
+
         hlrHuaweiDTOs.forEach( dto -> hlrHuaweiDetailsDTOS.add(HlrHuaweiDetailsDTO.builder()
                                                     .msisdn(dto.getMsisdn())
                                                     .hlrId(dto.getHlrIndex())
                                                     .imsi(dto.getImsi())
-                                                    .vlr_address(Optional.ofNullable(dto.getVlrAddress()).isPresent() ? dto.getVlrAddress() : null)
+                                                    .vlrAddress(Optional.ofNullable(dto.getVlrAddress()).isPresent() ? dto.getVlrAddress() : null)
                                                     .cat(Optional.ofNullable(dto.getCat()).isPresent() ? dto.getCat() : Constants.DEFAULT_VALUE.toString())
                                                     .schar(Optional.ofNullable(dto.getStdChargeGlobal()).isPresent() ? businessRules.mapperSchar(dto.getStdChargeGlobal()) :
                                                                                                                          Constants.DEFAULT_VALUE)
@@ -47,6 +48,17 @@ public class ProcessorHlrService {
                                                     .countApn(Optional.ofNullable(dto.getOptgprs()).isPresent() ?  businessRules.mapperCountApn(dto.getOptgprs()) : 0 )
                                                     .subType(String.valueOf(businessRules.mapperSubType(dto.getOthersService())))
                                                     .imei(businessRules.mapperImei(dto.getOthersService()))
+                                                    .oick(businessRules.mapperOick(dto.getOthersService()))
+                                                    .ofa(businessRules.mapperOfa(dto.getOthersService()))
+                                                    .sodcf(Optional.ofNullable(dto.getCf()).isPresent() ? businessRules.mapperSodcf(dto.getCf()) : 0)
+                                                    .osb(businessRules.mapperOsb(dto.getOthersService()))
+                                                    .obcc(businessRules.mapperObcc(dto.getOthersService()))
+                                                    .osb3(businessRules.mapperOsb3(dto.getOthersService()))
+                                                    .osb4(businessRules.mapperOsb4(dto.getOthersService()))
+                                                    .obr(businessRules.mapperObr(dto.getOthersService()))
+                                                    .stype(businessRules.mapperStype(dto.getOthersService()))
+
+
                 .build()));
         writerHlrService.write(hlrHuaweiDetailsDTOS);
     }
@@ -54,6 +66,7 @@ public class ProcessorHlrService {
 
     private HlrHuaweiDTO mapperVoToDTO(HlrHuaweiVO vo) {
         return HlrHuaweiDTO.builder()
+                            .cf(vo.getCf())
                             .optgprs(vo.getOptgprs())
                             .cat(vo.getCat())
                             .hlrIndex(vo.getHlrIndex())

@@ -21,15 +21,15 @@ public class HlrHuaweiDetailsDTO {
     private String imei;
     private String subType;
     private Integer hlrId;
-    private String vlr_address;
+    private String vlrAddress;
     private List<String> apnList;
     private List<String> qosList;
     private Integer countApn;
     private String cat;
     private Integer oick;
     private Integer ofa;
-    private String sodcf;
-    private String osb;
+    private Integer sodcf;
+    private Integer osb;
     private String bicro;
     private Integer obcc;
     private Integer osb3;

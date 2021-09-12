@@ -78,6 +78,14 @@ public class ReaderHlrService {
                             vos.get(element).getOptgprs().add(value);
                         }
                         break;
+                    case Constants.TAG_VAR_CF:
+                        if (Optional.ofNullable(vos.get(element).getCf()).isPresent()) {
+                            vos.get(element).getCf().add(value);
+                        } else {
+                            vos.get(element).setCf(new ArrayList<>());
+                            vos.get(element).getCf().add(value);
+                        }
+                        break;
                     case Constants.TAG_FIX_END:
                         if (vos.size() < lengthBuffer)
                             element++;

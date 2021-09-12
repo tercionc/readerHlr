@@ -32,7 +32,7 @@ public class HlrHuaweiDetails {
     private Integer hlrId;
 
     @Column(name = "VLR_ADDRESS")
-    private String vlr_address;
+    private String vlrAddress;
 
     @Column(name = "APN_LIST")
     private String apnList;
@@ -53,10 +53,10 @@ public class HlrHuaweiDetails {
     private Integer ofa;
 
     @Column(name = "SODCF")
-    private String sodcf;
+    private Integer sodcf;
 
     @Column(name = "OSB")
-    private String osb;
+    private Integer osb;
 
     @Column(name = "BICRO")
     private String bicro;

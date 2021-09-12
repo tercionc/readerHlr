@@ -22,5 +22,6 @@ public class HlrHuaweiVO {
     private String cat;
     private String stdChargeGlobal;
     private List<String> optgprs;
+    private List<String> cf;
     private Map<String, String> othersServices;
 }
