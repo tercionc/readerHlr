@@ -1,4 +1,4 @@
-package com.hlr.huawei;
+package io.hlr.huawei;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
