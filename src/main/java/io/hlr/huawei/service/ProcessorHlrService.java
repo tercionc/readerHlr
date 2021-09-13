@@ -59,8 +59,7 @@ public class ProcessorHlrService {
                                                     .stype(businessRules.mapperStype(dto.getOthersService()))
                                                     .sosdcf(Optional.ofNullable(dto.getCf()).isPresent() ? businessRules.mapperSoscf(dto.getCf()) : 0)
                                                     .nam(businessRules.mapperNam(dto.getCurrentNam()))
-
-
+                                                    .soclir(businessRules.mapperSoclir(dto.getOthersService()))
 
                 .build()));
         writerHlrService.write(hlrHuaweiDetailsDTOS);

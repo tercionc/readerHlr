@@ -49,6 +49,7 @@ public class WriterHlrService {
                                 .stype(dto.getStype())
                                 .sosdcf(dto.getSosdcf())
                                 .nam(dto.getNam())
+                                .soclir(dto.getSoclir())
 
                 /*
                                 .bicro(Optional.ofNullable(dto.getBicro()).orElse(Constants.DEFAULT_STRING_VALUE))

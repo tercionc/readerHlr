@@ -213,5 +213,30 @@ public class BusinessRules {
         }
     }
 
+    public Integer mapperSoclir(final Map<String, String> othersService) {
+        try {
+            if (Optional.ofNullable(othersService).isPresent() &&
+                    othersService.containsKey(Constants.TAG_VAR_GS)) {
+                if (Arrays.asList(othersService.getOrDefault(Constants.TAG_VAR_GS, "NONE").split("&")).contains(GsType.CLIR) &&
+                        othersService.containsKey(Constants.TAG_VAR_CLIRES) )
+                    switch (CliresType.valueOf(othersService.get(Constants.TAG_VAR_CLIRES))) {
+                        case PERM :
+                            return 0;
+                        case TEMPRES :
+                            return 1;
+                        case TEMPALLOW :
+                            return 2;
+                        default:
+                            return 0;
+                    }
+                return 0;
+            } else
+                return 0;
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+            return 0;
+        }
+    }
+
 
 }
