@@ -67,6 +67,9 @@ public class ReaderHlrService {
                     case Constants.TAG_FIX_CAT:
                         vos.get(element).setCat(value);
                         break;
+                    case Constants.TAG_FIX_CURRENTNAM:
+                        vos.get(element).setCurrentNam(value);
+                        break;
                     case Constants.TAG_FIX_STD_CHARGE_GLOBAL:
                         vos.get(element).setStdChargeGlobal(value);
                         break;

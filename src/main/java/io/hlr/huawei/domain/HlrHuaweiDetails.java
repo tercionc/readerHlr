@@ -168,4 +168,7 @@ public class HlrHuaweiDetails {
 
     @Column(name = "OSB2")
     private Integer osb2;
+
+    @Column(name = "NAM")
+    private Integer nam;
 }

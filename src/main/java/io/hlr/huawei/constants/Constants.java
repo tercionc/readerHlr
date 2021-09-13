@@ -22,7 +22,7 @@ public class Constants {
     public static final String TAG_VAR_ODBPLMN = "ODBPLMN";
     public static final String TAG_VAR_GS = "GS";
     public static final String TAG_VAR_ODBROAM = "ODBROAM";
-    public static final String TAG_VAR_CURRENTNAM = "CURRENTNAM";
+    public static final String TAG_FIX_CURRENTNAM = "CURRENTNAM";
     public static final String TAG_VAR_TBS = "TBS";
     public static final String TAG_VAR_CW = "CW";
     public static final String TAG_VAR_VLRLIST = "VLRLIST";

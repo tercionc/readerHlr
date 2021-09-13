@@ -47,14 +47,17 @@ public class WriterHlrService {
                                 .osb4(dto.getOsb4())
                                 .obr(dto.getObr())
                                 .stype(dto.getStype())
+                                .sosdcf(dto.getSosdcf())
+                                .nam(dto.getNam())
 
+                /*
                                 .bicro(Optional.ofNullable(dto.getBicro()).orElse(Constants.DEFAULT_STRING_VALUE))
                                 .bs3g(Optional.ofNullable(dto.getBs3g()).orElse(Constants.DEFAULT_VALUE))
                                 .bs26(Optional.ofNullable(dto.getBs26()).orElse(Constants.DEFAULT_VALUE))
                                 .cat(Optional.ofNullable(dto.getCat()).orElse(Constants.DEFAULT_STRING_VALUE))
                                 .caw(Optional.ofNullable(dto.getCaw()).orElse(Constants.DEFAULT_VALUE))
                                 .cfb(Optional.ofNullable(dto.getCfb()).orElse(Constants.DEFAULT_VALUE))
-                                .cfnrc(Optional.ofNullable(dto.getCfnrc()).orElse(Constants.DEFAULT_VALUE))
+                                .cfnrc(Optional.ofNullable(dto.getCfnrc()).orElse(Constants.DEFAULT_VALUE))*/
                 .build();
     }
 

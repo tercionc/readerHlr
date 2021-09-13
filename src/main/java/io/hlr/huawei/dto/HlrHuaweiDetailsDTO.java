@@ -67,4 +67,5 @@ public class HlrHuaweiDetailsDTO {
     private Integer csp;
     private Integer prbt;
     private Integer osb2;
+    private Integer nam;
 }

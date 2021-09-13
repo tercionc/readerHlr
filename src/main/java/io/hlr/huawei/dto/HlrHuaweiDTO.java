@@ -23,6 +23,7 @@ public class HlrHuaweiDTO {
     private Integer hlrIndex;
     private String vlrAddress;
     private String cat;
+    private String currentNam;
     private String stdChargeGlobal;
     private List<String> optgprs;
     private List<String> cf;

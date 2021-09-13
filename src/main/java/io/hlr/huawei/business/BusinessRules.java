@@ -102,6 +102,18 @@ public class BusinessRules {
         }
     }
 
+    public Integer mapperSoscf(final List<String> cf) {
+        try {
+            if (Optional.ofNullable(cf).isPresent()) {
+                return  Arrays.asList(new ArrayList<>(cf).get(cf.size()-1).split("-")).get(5).equals("YES") ? 1 : 0;
+            } else
+                return 0;
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+            return 0;
+        }
+    }
+
     public Integer mapperOsb(final Map<String, String> othersService) {
         try {
             if (Optional.ofNullable(othersService).isPresent() &&
@@ -180,6 +192,26 @@ public class BusinessRules {
         }
     }
 
+    public Integer mapperNam( final String currentNam) {
+        try {
+            if (Optional.ofNullable(currentNam).isPresent())
+                switch ( CurrentNamType.valueOf(currentNam) ) {
+                    case BOTH :
+                        return 1;
+                    case NONGPRS :
+                        return 2;
+                    case GPRS :
+                        return 3;
+                    default:
+                        return 0;
+                }
+            else
+                return 0;
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+            return 0;
+        }
+    }
 
 
 }

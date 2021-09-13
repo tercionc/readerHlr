@@ -57,6 +57,9 @@ public class ProcessorHlrService {
                                                     .osb4(businessRules.mapperOsb4(dto.getOthersService()))
                                                     .obr(businessRules.mapperObr(dto.getOthersService()))
                                                     .stype(businessRules.mapperStype(dto.getOthersService()))
+                                                    .sosdcf(Optional.ofNullable(dto.getCf()).isPresent() ? businessRules.mapperSoscf(dto.getCf()) : 0)
+                                                    .nam(businessRules.mapperNam(dto.getCurrentNam()))
+
 
 
                 .build()));
