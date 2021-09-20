@@ -49,16 +49,36 @@ public class WriterHlrService {
                                 .stype(dto.getStype())
                                 .sosdcf(dto.getSosdcf())
                                 .nam(dto.getNam())
-
-                /*
-                                .bicro(Optional.ofNullable(dto.getBicro()).orElse(Constants.DEFAULT_STRING_VALUE))
-                                .bs3g(Optional.ofNullable(dto.getBs3g()).orElse(Constants.DEFAULT_VALUE))
-                                .bs26(Optional.ofNullable(dto.getBs26()).orElse(Constants.DEFAULT_VALUE))
-                                .cat(Optional.ofNullable(dto.getCat()).orElse(Constants.DEFAULT_STRING_VALUE))
-                                .caw(Optional.ofNullable(dto.getCaw()).orElse(Constants.DEFAULT_VALUE))
-                                .cfb(Optional.ofNullable(dto.getCfb()).orElse(Constants.DEFAULT_VALUE))
-                                .cfnrc(Optional.ofNullable(dto.getCfnrc()).orElse(Constants.DEFAULT_VALUE))*/
-                .build();
+                                .soclir(dto.getSoclir())
+                                .obi(dto.getObi())
+                                .obo(dto.getObo())
+                                .bs26(dto.getBs26())
+                                .bs3g(dto.getBs3g())
+                                .ts11(dto.getTs11())
+                                .ts21(dto.getTs21())
+                                .ts22(dto.getTs22())
+                                .pdpId1(Optional.ofNullable(dto.getPdpId1()).orElse(null))
+                                .pdpId2(Optional.ofNullable(dto.getPdpId2()).orElse(null))
+                                .pdpId3(Optional.ofNullable(dto.getPdpId3()).orElse(null))
+                                .pdpId4(Optional.ofNullable(dto.getPdpId4()).orElse(null))
+                                .pdpId5(Optional.ofNullable(dto.getPdpId5()).orElse(null))
+                                .pdpId6(Optional.ofNullable(dto.getPdpId6()).orElse(null))
+                                .pdpId7(Optional.ofNullable(dto.getPdpId7()).orElse(null))
+                                .pdpId8(Optional.ofNullable(dto.getPdpId8()).orElse(null))
+                                .pdpId9(Optional.ofNullable(dto.getPdpId9()).orElse(null))
+                                .pdpId10(Optional.ofNullable(dto.getPdpId10()).orElse(null))
+                                .caw(dto.getCaw())
+                                .cfb(dto.getCfb())
+                                .cfnrc(dto.getCfnrc())
+                                .cfnry(dto.getCfnry())
+                                .cfu(dto.getCfu())
+                                .mpty(dto.getMpty())
+                                .hold(dto.getHold())
+                                .rsa(dto.getRsa())
+                                .csp(dto.getCsp())
+                                .prbt(dto.getPrbt())
+                                .osb2(dto.getOsb2())
+                                .bicro(Optional.ofNullable(dto.getBicro()).orElse(Constants.DEFAULT_STRING_VALUE)).build();
     }
 
 

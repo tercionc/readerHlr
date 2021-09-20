@@ -1,17 +1,18 @@
 package io.hlr.huawei.enumerator;
 
 public enum CliresType {
-    PERM("0"),
-    TEMPRES("1"),
-    TEMPALLOW("2");
+    PERM(0),
+    TEMPRES(1),
+    TEMPALLOW(2);
 
-    private final String cliresType;
+    private final Integer value;
 
-    CliresType(String cliresType) {
-        this.cliresType = cliresType;
+    CliresType(Integer value) {
+        this.value = value;
     }
 
-    public String getCliresType() {
-        return this.cliresType;
+    public Integer getValue() {
+        return this.value;
     }
+
 }

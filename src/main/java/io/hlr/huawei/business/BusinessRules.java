@@ -114,11 +114,11 @@ public class BusinessRules {
         }
     }
 
-    public Integer mapperOsb(final Map<String, String> othersService) {
+    public Integer mapperOsb(final Map<String, String> othersService, final OdbplmnType type) {
         try {
             if (Optional.ofNullable(othersService).isPresent() &&
                     othersService.containsKey(Constants.TAG_VAR_ODBPLMN))
-                return OdbplmnType.valueOf(othersService.getOrDefault(Constants.TAG_VAR_ODBPLMN, "NONE")).equals(OdbplmnType.PLMN1) ? 1 : 0;
+                return OdbplmnType.valueOf(othersService.getOrDefault(Constants.TAG_VAR_ODBPLMN, "NONE")).equals(type) ? 1 : 0;
             else
                 return 0;
         } catch (Exception ex) {
@@ -127,7 +127,6 @@ public class BusinessRules {
         }
 
     }
-
     public Integer mapperOsb3(final Map<String, String> othersService) {
         try {
             if (Optional.ofNullable(othersService).isPresent() &&
@@ -213,5 +212,112 @@ public class BusinessRules {
         }
     }
 
+    public Integer mapperSoclir(final Map<String, String> othersService) {
+        try {
+            List<GsType> gss;
+            if (Optional.ofNullable(othersService).isPresent() &&
+                    othersService.containsKey(Constants.TAG_VAR_GS)) {
+                gss = Arrays.stream(othersService.getOrDefault(Constants.TAG_VAR_GS, "NONE").split("&"))
+                            .map(GsType::valueOf)
+                            .collect(Collectors.toList());
+
+                if( gss.contains(GsType.CLIR) &&
+                        othersService.containsKey(Constants.TAG_VAR_CLIRES) )
+                    return CliresType.valueOf(othersService.getOrDefault(Constants.TAG_VAR_CLIRES, "PERM")).getValue();
+                else return 0;
+            } else
+                return 0;
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+            return 0;
+        }
+    }
+
+    public Integer mapperTsOrBs(final Map<String, String> othersService, final TelephonyBasicServiceType type) {
+        try {
+            if ( Optional.ofNullable(othersService).isPresent() )
+                return Arrays.asList(othersService.getOrDefault(Constants.TAG_VAR_TBS, "NONE").split("&"))
+                        .contains(type.toString()) ? 1 : 0;
+            else
+                return 0;
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+            return 0;
+        }
+    }
+
+    public Integer mapperCaw(final Map<String, String> othersService) {
+        try {
+            if ( Optional.ofNullable(othersService).isPresent() &&
+                    othersService.containsKey(Constants.TAG_VAR_CW))
+                return 1;
+            else
+                return 0;
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+            return 0;
+        }
+    }
+
+    public String mapperPdpId(final List<String> optgprs, final Integer position) {
+        List<String> apnList = mapperApnList(optgprs);
+        List<String> qosList = mapperQosList(optgprs);
+        if (apnList.size() >= position && qosList.size() >= position)
+            return apnList.get(position-1) + "-" + qosList.get(position-1);
+        return null;
+    }
+
+    public Integer mapperCf(final Map<String, String> othersService, final SsCodeType type) {
+        try {
+            if ( Optional.ofNullable(othersService).isPresent())
+                return Arrays.asList(othersService.getOrDefault(Constants.TAG_VAR_CF, "NONE").split("&"))
+                        .contains(type.toString()) ? 1 : 0;
+            else
+                return 0;
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+            return 0;
+        }
+    }
+
+    public Integer mapperGs(final Map<String, String> othersService, final GsType type) {
+        try {
+            if (Optional.ofNullable(othersService).isPresent() &&
+                    othersService.containsKey(Constants.TAG_VAR_GS))
+                return Arrays.asList(othersService.getOrDefault(Constants.TAG_VAR_GS, "NONE").split("&"))
+                        .contains(type.toString()) ? 1 : 0;
+            else
+                return 0;
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+            return 0;
+        }
+    }
+
+    public String mapperRsa(final Map<String, String> othersService) {
+        try {
+            if ( Optional.ofNullable(othersService).isPresent() &&
+                    othersService.containsKey(Constants.TAG_VAR_VLRLIST))
+                return othersService.get(Constants.TAG_VAR_VLRLIST);
+            else
+                return "0";
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+            return "0";
+        }
+    }
+
+    public Integer mapperCsp(final Map<String, String> othersService) {
+        try {
+            if ( Optional.ofNullable(othersService).isPresent() &&
+                    othersService.containsKey(Constants.TAG_VAR_CSP))
+                return Integer.valueOf(othersService.get(Constants.TAG_VAR_CSP));
+            else
+                return 0;
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+            return 0;
+        }
+    }
 
 }

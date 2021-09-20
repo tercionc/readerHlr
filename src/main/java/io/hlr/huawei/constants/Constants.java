@@ -26,7 +26,11 @@ public class Constants {
     public static final String TAG_VAR_TBS = "TBS";
     public static final String TAG_VAR_CW = "CW";
     public static final String TAG_VAR_VLRLIST = "VLRLIST";
+    public static final String TAG_VAR_CSP = "CSP";
     public static final String TAG_VAR_OCSI = "OCSI";
+    public static final String TAG_VAR_CLIR = "CLIR";
+    public static final String TAG_VAR_MPTY = "MPTY";
+    public static final String TAG_VAR_CLIRES = "CLIRES";
 
     public static final String SEPERATOR_EQUAL = "=";
     public static final Integer DEFAULT_VALUE = 0;
