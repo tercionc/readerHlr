@@ -32,6 +32,8 @@ public class Constants {
     public static final String TAG_VAR_MPTY = "MPTY";
     public static final String TAG_VAR_CLIRES = "CLIRES";
 
+    public static final String TAG_VAR_CLIRES = "CLIRES";
+
     public static final String SEPERATOR_EQUAL = "=";
     public static final Integer DEFAULT_VALUE = 0;
     public static final String DEFAULT_STRING_VALUE = "0";
