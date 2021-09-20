@@ -118,47 +118,7 @@ public class BusinessRules {
         try {
             if (Optional.ofNullable(othersService).isPresent() &&
                     othersService.containsKey(Constants.TAG_VAR_ODBPLMN))
-                return OdbplmnType.valueOf(othersService.getOrDefault(Constants.TAG_VAR_ODBPLMN, "NONE")).equals(type) ? 1 : 0;
-            else
-                return 0;
-        } catch (Exception ex) {
-            log.error(ex.getMessage());
-            return 0;
-        }
-
-    }
-    public Integer mapperOsb3(final Map<String, String> othersService) {
-        try {
-            if (Optional.ofNullable(othersService).isPresent() &&
-                    othersService.containsKey(Constants.TAG_VAR_ODBPLMN))
-                return OdbplmnType.valueOf(othersService.getOrDefault(Constants.TAG_VAR_ODBPLMN, "NONE")).equals(OdbplmnType.PLMN3) ? 1 : 0;
-            else
-                return 0;
-        } catch (Exception ex) {
-            log.error(ex.getMessage());
-            return 0;
-        }
-    }
-
-    public Integer mapperOsb4(final Map<String, String> othersService) {
-        try {
-            if (Optional.ofNullable(othersService).isPresent() &&
-                    othersService.containsKey(Constants.TAG_VAR_ODBPLMN))
-                return OdbplmnType.valueOf(othersService.getOrDefault(Constants.TAG_VAR_ODBPLMN, "0")).equals(OdbplmnType.PLMN4) ? 1 : 0;
-            else
-                return 0;
-        } catch (Exception ex) {
-            log.error(ex.getMessage());
-            return 0;
-        }
-    }
-
-    public Integer mapperObcc(final Map<String, String> othersService) {
-        try {
-            if (Optional.ofNullable(othersService).isPresent() &&
-                    othersService.containsKey(Constants.TAG_VAR_GS))
-                return Arrays.asList(othersService.getOrDefault(Constants.TAG_VAR_GS, "NONE").split("&"))
-                                .contains(GsType.PLMNSS9.toString()) ? 1 : 0;
+                return OdbplmnType.valueOf(othersService.get(Constants.TAG_VAR_ODBPLMN)).equals(type) ? 1 : 0;
             else
                 return 0;
         } catch (Exception ex) {
@@ -235,10 +195,12 @@ public class BusinessRules {
 
     public Integer mapperTsOrBs(final Map<String, String> othersService, final TelephonyBasicServiceType type) {
         try {
-            if ( Optional.ofNullable(othersService).isPresent() )
-                return Arrays.asList(othersService.getOrDefault(Constants.TAG_VAR_TBS, "NONE").split("&"))
-                        .contains(type.toString()) ? 1 : 0;
-            else
+            if ( Optional.ofNullable(othersService).isPresent() ) {
+                return Arrays.stream(othersService.getOrDefault(Constants.TAG_VAR_TBS, "NONE").split("&"))
+                        .map(TelephonyBasicServiceType::valueOf)
+                        .collect(Collectors.toList())
+                        .contains(type) ? 1 : 0;
+            } else
                 return 0;
         } catch (Exception ex) {
             log.error(ex.getMessage());

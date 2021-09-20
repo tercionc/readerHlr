@@ -43,6 +43,7 @@ public class WriterHlrService {
                                 .ofa(dto.getOfa())
                                 .sodcf(dto.getSodcf())
                                 .obcc(dto.getObcc())
+                                .osb(dto.getOsb())
                                 .osb3(dto.getOsb3())
                                 .osb4(dto.getOsb4())
                                 .obr(dto.getObr())
