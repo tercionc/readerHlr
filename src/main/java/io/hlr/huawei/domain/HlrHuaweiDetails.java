@@ -13,7 +13,7 @@ import javax.persistence.*;
 @ToString
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "HLR_HUAWEI_DETAILS")
+@Table(name = "PI_HLR_HUAWEI_DETAILS")
 public class HlrHuaweiDetails {
     @Id
     @Column(name="MSISDN")
