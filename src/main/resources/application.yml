@@ -32,9 +32,9 @@ spring:
                     elideSetAutoCommits: true
                     maintainTimeStats: false
         initialize: false
-        password: RAIDPI_DAT
-        url: jdbc:oracle:thin:@brux0604:1521/T00RE4
-        username: RAIDPI_DAT
+        password: ????
+        url: jdbc:oracle:thin:@????:1521/????
+        username: ????
     jpa:
         database-platform: org.hibernate.dialect.Oracle12cDialect
         properties:
